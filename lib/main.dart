@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -32,18 +33,26 @@ class _MyAppState extends State<MyApp> {
             itemCount: data == null ? 0 : data.length,
             itemBuilder: (BuildContext context, int index) {
               return Container(
-                child: Center(
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: <Widget>[
-                        Card(
-                          child: Container(
-                            child: Text(data[index]['name']),
-                            padding: EdgeInsets.all(20),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      Card(
+                        color: Colors.primaries[
+                            Random().nextInt(Colors.primaries.length)],
+                        margin: EdgeInsets.all(5),
+                        child: Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(data[index]['name']),
+                              Text(data[index]['birth_year'])
+                            ],
                           ),
-                        )
-                      ]),
-                ),
+                        ),
+                      )
+                    ]),
               );
             }),
       ),
