@@ -27,6 +27,7 @@ class _MyAppState extends State<MyApp> {
       title: 'Material App',
       home: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.grey.shade900,
           title: Text('Json File Read'),
         ),
         body: ListView.builder(
