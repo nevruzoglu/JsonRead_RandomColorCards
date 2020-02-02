@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 void main() => runApp(MyApp());
 
@@ -10,6 +11,15 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  final String url = 'https://swapi.co/api/people/';
+  List data;
+
+  @override
+  void initState() {
+    super.initState();
+    this.getJsonData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,7 +29,7 @@ class _MyAppState extends State<MyApp> {
           title: Text('Json File Read'),
         ),
         body: ListView.builder(
-            itemCount: 1,
+            itemCount: data == null ? 0 : data.length,
             itemBuilder: (BuildContext context, int index) {
               return Container(
                 child: Center(
@@ -28,7 +38,7 @@ class _MyAppState extends State<MyApp> {
                       children: <Widget>[
                         Card(
                           child: Container(
-                            child: Text('Hello'),
+                            child: Text(data[index]['name']),
                             padding: EdgeInsets.all(20),
                           ),
                         )
@@ -38,5 +48,19 @@ class _MyAppState extends State<MyApp> {
             }),
       ),
     );
+  }
+
+  Future<String> getJsonData() async {
+    var response = await http.get(
+        //encode url
+        Uri.encodeFull(url),
+        //only accept json
+        headers: {'Accept': 'application/json'});
+    print(response.body);
+    setState(() {
+      var convertDatatoJson = jsonDecode(response.body);
+      data = convertDatatoJson['results'];
+    });
+    return "Success";
   }
 }
