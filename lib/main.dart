@@ -74,8 +74,22 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
+// class RandomHexColor<Color> {
+//   Color one = Color(0xff808000);
+//   Color two = Color(0xff608000);
+//   Color three = Color(0xff208080);
+
+//   List<Color> hexColor = [one, two, three];
+
+//   var indexColor = Random().nextInt(3);
+
+//   Color colorRandom() {
+//     print(hexColor[indexColor]);
+//     return hexColor[indexColor];
+//   }
+// }
+
 class RandomColor<Color> {
-  // RandomColor(this.one, this.two, this.three);
   List<MaterialColor> color = [
     Colors.green,
     Colors.blue,
@@ -89,5 +103,3 @@ class RandomColor<Color> {
     return color[index];
   }
 }
-
-// Colors.primaries[                             Random().nextInt(Colors.primaries.length)],
