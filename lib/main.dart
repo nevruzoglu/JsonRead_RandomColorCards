@@ -38,8 +38,7 @@ class _MyAppState extends State<MyApp> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
                       Card(
-                        color: Colors.primaries[
-                            Random().nextInt(Colors.primaries.length)],
+                        color: RandomColor().colorRandomizer(),
                         margin: EdgeInsets.all(5),
                         child: Padding(
                           padding: const EdgeInsets.all(20.0),
@@ -74,3 +73,21 @@ class _MyAppState extends State<MyApp> {
     return "Success";
   }
 }
+
+class RandomColor<Color> {
+  // RandomColor(this.one, this.two, this.three);
+  List<MaterialColor> color = [
+    Colors.green,
+    Colors.blue,
+    Colors.indigo,
+  ];
+
+  var index = Random().nextInt(3);
+
+  MaterialColor colorRandomizer() {
+    print(color[index]);
+    return color[index];
+  }
+}
+
+// Colors.primaries[                             Random().nextInt(Colors.primaries.length)],
