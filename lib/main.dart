@@ -61,12 +61,12 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<String> getJsonData() async {
-    var response = await http.get(
+    http.Response response = await http.get(
         //encode url
         Uri.encodeFull(url),
         //only accept json
         headers: {'Accept': 'application/json'});
-    print(response.body);
+
     setState(() {
       var convertDatatoJson = jsonDecode(response.body);
       data = convertDatatoJson['results'];
