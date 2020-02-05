@@ -38,7 +38,9 @@ class _MyAppState extends State<MyApp> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
                       Card(
-                        color: RandomHexColor().colorRandom(),
+                        color: RandomHexColor(Color(0xffFC6DAB),
+                                Color(0xff5E2BFF), Color(0xffF7F6C5))
+                            .colorRandom(),
                         margin: EdgeInsets.all(5),
                         child: Padding(
                           padding: const EdgeInsets.all(20.0),
@@ -74,17 +76,32 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
+// class RandomHexColor {
+//   static const Color one = Color(0xffFC6DAB);
+//   static const Color two = Color(0xff5E2BFF);
+//   static const Color three = Color(0xffF7F6C5);
+
+//   List<Color> hexColor = [one, two, three];
+
+//   static final _random = Random();
+
+//   Color colorRandom() {
+//     return hexColor[_random.nextInt(3)];
+//   }
+// }
+
 class RandomHexColor {
-  static const Color one = Color(0xffFC6DAB);
-  static const Color two = Color(0xff5E2BFF);
-  static const Color three = Color(0xffF7F6C5);
+  Color one;
+  Color two;
+  Color three;
+  List hexColor;
 
-  List<Color> hexColor = [one, two, three];
-
-  static final _random = Random();
+  RandomHexColor(this.one, this.two, this.three) : hexColor = [one, two, three];
+  // same with > RandomHexColor(this.one, this.two, this.three) { hexColor = [one, two, three];}
 
   Color colorRandom() {
-    return hexColor[_random.nextInt(3)];
+    // or can be use here > List hexColor = [one, two, three];
+    return hexColor[Random().nextInt(3)];
   }
 }
 
