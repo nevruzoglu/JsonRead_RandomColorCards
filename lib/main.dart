@@ -38,7 +38,7 @@ class _MyAppState extends State<MyApp> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
                       Card(
-                        color: RandomColor().colorRandomizer(),
+                        color: RandomHexColor().colorRandom(),
                         margin: EdgeInsets.all(5),
                         child: Padding(
                           padding: const EdgeInsets.all(20.0),
@@ -74,32 +74,31 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-// class RandomHexColor<Color> {
-//   Color one = Color(0xff808000);
-//   Color two = Color(0xff608000);
-//   Color three = Color(0xff208080);
+class RandomHexColor {
+  static const Color one = Color(0xffFC6DAB);
+  static const Color two = Color(0xff5E2BFF);
+  static const Color three = Color(0xffF7F6C5);
 
-//   List<Color> hexColor = [one, two, three];
+  List<Color> hexColor = [one, two, three];
 
-//   var indexColor = Random().nextInt(3);
+  static final _random = Random();
 
-//   Color colorRandom() {
-//     print(hexColor[indexColor]);
-//     return hexColor[indexColor];
-//   }
-// }
-
-class RandomColor<Color> {
-  List<MaterialColor> color = [
-    Colors.green,
-    Colors.blue,
-    Colors.indigo,
-  ];
-
-  var index = Random().nextInt(3);
-
-  MaterialColor colorRandomizer() {
-    print(color[index]);
-    return color[index];
+  Color colorRandom() {
+    return hexColor[_random.nextInt(3)];
   }
 }
+
+// class RandomColor<Color> {
+//   List<MaterialColor> color = [
+//     Colors.green,
+//     Colors.blue,
+//     Colors.indigo,
+//   ];
+
+//   var index = Random().nextInt(3);
+
+//   MaterialColor colorRandomizer() {
+//     print(color[index]);
+//     return color[index];
+//   }
+// }
